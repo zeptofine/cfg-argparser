@@ -3,19 +3,18 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "cfg_argparser"
+name = "cfg-argparser"
 version = "1.0.0"
 authors = [
     {name="Zeptofine", email="zeptofine@gmail.com"}
 ]
 description = "A package designed to simplify configurable defaults from argparse."
 readme="README.md"
-classifiers= [
-    "Progamming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11"
-]
+# classifiers= [
+#     "Programming Language :: Python :: 3.9",
+#     "Programming Language :: Python :: 3.10",
+#     "Programming Language :: Python :: 3.11"
+# ]
 
 [project.urls]
 "Homepage" = "https://github.com/zeptofine/cfg-argparser"
