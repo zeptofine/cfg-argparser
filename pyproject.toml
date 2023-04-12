@@ -10,14 +10,13 @@ authors = [
 ]
 description = "A package designed to simplify configurable defaults from argparse."
 readme="README.md"
-# required-python
 classifiers= [
     "Progamming Language :: Python :: 3",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11"
-
 ]
 
 [project.urls]
-"Homepage" = ""
+"Homepage" = "https://github.com/zeptofine/cfg-argparser"
+"Bug Tracker" = "https://github.com/zeptofine/cfg-argparser/issues"
