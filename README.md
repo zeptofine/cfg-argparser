@@ -2,6 +2,18 @@
 
 a config wrapper I made to be easily applied to argparse objects.
 
+## Installation
+
+```bash
+# from pypi:
+pip install cfg-argparser
+
+# from github:
+git clone "https://github.com/zeptofine/cfg-argparser"
+cd cfg-argparser
+pip install -e .
+```
+
 ## Example
 
 ```python
