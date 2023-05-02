@@ -1,4 +1,4 @@
-# cfg_argparser 1.1.0
+# cfg_argparser 1.1.1
 
 a config wrapper I made to be easily applied to argparse objects.
 
