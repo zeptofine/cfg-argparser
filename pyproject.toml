@@ -4,18 +4,23 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cfg-argparser"
-version = "1.0.5"
-authors = [
-    {name="Zeptofine", email="zeptofine@gmail.com"}
-]
+version = "1.1.1"
+authors = [{ name = "Zeptofine", email = "zeptofine@gmail.com" }]
 description = "A package designed to simplify configurable defaults from argparse."
-readme="README.md"
-classifiers= [
+readme = "README.md"
+classifiers = [
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
 
 [project.urls]
 "Homepage" = "https://github.com/zeptofine/cfg-argparser"
-"Bug Tracker" = "https://github.com/zeptofine/cfg-argparser/issues" 
+"Bug Tracker" = "https://github.com/zeptofine/cfg-argparser/issues"

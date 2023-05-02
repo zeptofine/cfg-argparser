@@ -1,4 +1,4 @@
-# cfg_argparser
+# cfg_argparser 1.1.0
 
 a config wrapper I made to be easily applied to argparse objects.
 
@@ -12,6 +12,7 @@ pip install cfg-argparser
 git clone "https://github.com/zeptofine/cfg-argparser"
 cd cfg-argparser
 pip install -e .
+
 ```
 
 ## Example

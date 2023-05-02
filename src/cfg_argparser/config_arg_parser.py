@@ -8,15 +8,20 @@ from sys import exit as sys_exit
 
 
 class CfgDict(dict):
-    def __init__(self, cfg_path, config: dict = {}):
+    """
+    A subclass of `dict` with some useful changes, most notably 
+    storing a path to save, and saving methods
+    """
+
+    def __init__(self, cfg_path, config: dict = {}, save_on_change: bool = False):
         super().__init__()
         self.cfg_path = cfg_path
+        self.save_on_change = save_on_change
         self.load()
         self.update(config)
 
     def set_path(self, path):
         self.cfg_path = path
-        self.load()
         return self
 
     def save(self, out_dict=None, indent=4):
@@ -26,12 +31,20 @@ class CfgDict(dict):
             f.write(json.dumps(out_dict, indent=indent))
         return self
 
+    def _save_on_change(self):
+        if self.save_on_change:
+            self.save()
+            return True
+        return False
+
     def update(self, *args, **kwargs):
         super().update(*args, **kwargs)
+        self._save_on_change()
         return self
 
     def pop(self, *args, **kwargs):
         super().pop(*args, **kwargs)
+        self._save_on_change()
         return self
 
     def clear(self):
@@ -49,6 +62,16 @@ class CfgDict(dict):
         else:
             self.save({})
         return self
+
+    def __setitem__(self, key, value):
+        super().__setitem__(key, value)
+        if self.save_on_change:
+            self.save()
+
+    def __delitem__(self, key):
+        super().__delitem__(key)
+        if self.save_on_change:
+            self.save()
 
 
 class ParserTree(dict):
@@ -226,7 +249,7 @@ class ConfigArgParser:
             exits when set, reset, or reset_all is called, by default False
         argument_group_name : str, optional
             name of the argument group, by default "Config options"
-        
+
         """
 
         # parent parser
