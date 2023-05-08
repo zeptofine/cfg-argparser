@@ -13,12 +13,14 @@ class CfgDict(dict):
     storing a path to save, and saving methods
     """
 
-    def __init__(self, cfg_path, config: dict = {}, save_on_change: bool = False):
+    def __init__(self, cfg_path, config: dict = {}, save_on_change: bool = False, sort_on_save: bool = False):
         super().__init__()
         self.cfg_path = cfg_path
-        self.save_on_change = save_on_change
-        self.load()
+        self.save_on_change = False
         self.update(config)
+        self.save_on_change = save_on_change
+        self.sort_on_save = sort_on_save
+        self.load()
 
     def set_path(self, path):
         self.cfg_path = path
@@ -27,6 +29,8 @@ class CfgDict(dict):
     def save(self, out_dict=None, indent=4):
         if not isinstance(out_dict, dict):
             out_dict = self
+        if self.sort_on_save:
+            out_dict = dict(sorted(out_dict.items()))
         with open(self.cfg_path, 'w+') as f:
             f.write(json.dumps(out_dict, indent=indent))
         return self
@@ -58,7 +62,7 @@ class CfgDict(dict):
                 try:
                     self.update(json.loads(data))
                 except (json.decoder.JSONDecodeError, TypeError):
-                    print(f'[!] failed to load config.orjson from {self.cfg_path}')
+                    print(f'[!] failed to load config from {self.cfg_path}')
         else:
             self.save({})
         return self
