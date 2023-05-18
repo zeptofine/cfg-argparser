@@ -13,14 +13,15 @@ class CfgDict(dict):
     storing a path to save, and saving methods
     """
 
-    def __init__(self, cfg_path, config: dict = {}, save_on_change: bool = False, sort_on_save: bool = False):
+    def __init__(self, cfg_path, config: dict = {}, save_on_change: bool = False, sort_on_save: bool = False, start_empty=False):
         super().__init__()
         self.cfg_path = cfg_path
         self.save_on_change = False
         self.update(config)
         self.save_on_change = save_on_change
         self.sort_on_save = sort_on_save
-        self.load()
+        if not start_empty:
+            self.load()
 
     def set_path(self, path):
         self.cfg_path = path
