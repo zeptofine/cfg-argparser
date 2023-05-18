@@ -10,16 +10,20 @@ from sys import exit as sys_exit
 class CfgDict(dict):
     """
     A subclass of `dict` with some useful changes, most notably 
-    storing a path to save, and saving methods
+    storing a path to save, including saving methods
     """
 
-    def __init__(self, cfg_path, config: dict = {}, save_on_change: bool = False, sort_on_save: bool = False, start_empty=False):
+    def __init__(self, cfg_path, config: dict = {}, 
+                 autofill: bool = False,
+                 save_on_change: bool = False, sort_on_save: bool = False, start_empty=False):
         super().__init__()
         self.cfg_path = cfg_path
         self.save_on_change = False
         self.update(config)
         self.save_on_change = save_on_change
         self.sort_on_save = sort_on_save
+        if not os.path.exists(self.cfg_path) and autofill:
+            self.save(config)
         if not start_empty:
             self.load()
 
@@ -67,6 +71,10 @@ class CfgDict(dict):
         else:
             self.save({})
         return self
+
+    def get_namespace(self) -> Namespace:
+        return Namespace(self)
+
 
     def __setitem__(self, key, value):
         super().__setitem__(key, value)
