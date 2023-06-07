@@ -78,7 +78,7 @@ def run(
     hash_choice: Annotated[
         HashChoices, typer.Option(help="What to do in the occurance of a hash conflict.")
     ] = HashChoices.IGNORE_ALL,
-) -> Literal[0]:
+) -> int:
     rprint(
         input_folder,
         scale,

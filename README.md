@@ -1,6 +1,6 @@
 # cfg_argparser 1.2.0
 
-a config wrapper I made to be easily applied to argparse objects.
+a config wrapper I made.
 
 ## Installation
 
