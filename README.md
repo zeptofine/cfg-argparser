@@ -1,4 +1,4 @@
-# cfg_argparser 1.1.4-1
+# cfg_argparser 1.2.0
 
 a config wrapper I made to be easily applied to argparse objects.
 
@@ -18,43 +18,17 @@ pip install -e .
 ## Example
 
 ```python
-import argparse
+from cfg_argparser import wrap_config, CfgDict
 
-from cfg_argparser import ConfigArgParser
-
-
-def parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--file")
-    return parser
+cfg = CfgDict("test.json")
+@wrap_config(cfg)
+def test_function(s: str, is_real: bool = True): # I'd advise only wrapping functions all having default methods
+    return f"{s} is {'real' if is_real else 'fake'}"
 
 if __name__ == "__main__":
-    args = ConfigArgParser(parser(),
-                           "config.json",
-                           exit_on_change=True).parse_args()
-    print(args.file)
-```
-
-Wrapping the `ConfigArgParser` around `parser()` adds a few "magic" arguments.
-here's what it adds:
-
-```rich
-Config options:
-  --set KEY VAL        change a default argument's options
-  --reset [VALUE ...]  removes a changed option.
-  --reset_all          resets every option.
-```
-
-Here's what it looks like in practice:
-
-```null
-> python example.py
-None
-> python example.py --file foo.txt
-foo.txt
-> python example.py --set file foo.txt
-> python example.py
-foo.txt
+  print(test_function("We"))
+  cfg['s'] = "us"
+  print(test_function()) # Linters hate him!
 ```
 
 ## Compatibilty
