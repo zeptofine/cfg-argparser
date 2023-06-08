@@ -48,7 +48,7 @@ dct = CfgDict("test.json")
 @app.command()
 @wrap_config(cfg_dict=dct)
 def run(
-    input_folder: Annotated[Path, typer.Option(help="Input folder.")],
+    input_folder: Annotated[Optional[Path], typer.Option(help="Input folder.")] = None,
     scale: Annotated[int, typer.Option(help="the scale to downscale.")] = 4,
     extension: Annotated[Optional[str], typer.Option(help="export extension.")] = None,
     recursive: Annotated[bool, typer.Option(help="preserves the tree hierarchy.")] = False,
@@ -62,9 +62,7 @@ def run(
     whitelist: Annotated[Optional[str], typer.Option(help="only allows paths with the given strings.")] = None,
     blacklist: Annotated[Optional[str], typer.Option(help="Excludes paths with the given strings.")] = None,
     list_separator: Annotated[Optional[str], typer.Option(help="separator for the white/blacklists.")] = None,
-    minsize: Annotated[
-        Optional[int], typer.Option(help="minimum size an image must be.", rich_help_panel="sizing")
-    ] = None,
+    minsize: Annotated[Optional[int], typer.Option(help="minimum size an image must be.")] = None,
     maxsize: Annotated[Optional[int], typer.Option(help="maximum size an image can be.")] = None,
     crop_mod: Annotated[bool, typer.Option(help="changes mod mode to crop the image to be divisible by scale")] = False,
     before: Annotated[Optional[str], typer.Option(help="only uses files before a given date")] = None,
