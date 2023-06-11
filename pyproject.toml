@@ -4,9 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cfg-param-wrapper"
-version = "1.0.0"
+version = "1.0.0-1"
 authors = [{ name = "Zeptofine", email = "zeptofine@gmail.com" }]
-description = "A package designed to simplify configurable defaults from argparse."
+description = "A package designed to simplify defaults."
 readme = "README.md"
 classifiers = [
     "Programming Language :: Python :: 3",
