@@ -6,11 +6,11 @@ a config wrapper I made. It's made to wrap simple functions, and intercept confi
 
 ```bash
 # from pypi:
-pip install cfg-argparser
+pip install cfg-param-wrapper
 
 # from github:
-git clone "https://github.com/zeptofine/cfg-argparser"
-cd cfg-argparser
+git clone "https://github.com/zeptofine/cfg-param-wrapper"
+cd cfg-param-wrapper
 pip install -e .
 
 ```
@@ -30,7 +30,3 @@ if __name__ == "__main__":
   cfg['s'] = "us"
   print(test_function()) # Linters hate him!
 ```
-
-## Compatibilty
-
-This was mainly tested on 3.9 and 3.10, but it should work from 3.6 onwards. i can't test earlier versions for some reason.
