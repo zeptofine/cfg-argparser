@@ -49,7 +49,7 @@ class CfgDict(dict):
             out_dict = self
         if self.sort_on_save:
             out_dict = dict(sorted(out_dict.items()))
-        self.save_handler.save(out_dict)
+        self.save_handler.save(dict(out_dict))
         return self
 
     def _save_on_change(self) -> bool:

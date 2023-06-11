@@ -7,7 +7,7 @@ import typer
 from rich import print as rprint
 from typing_extensions import Annotated
 
-from cfg_argparser import CfgDict, wrap_config
+from cfg_param_wrapper import CfgDict, wrap_config
 
 CPU_COUNT = int(multiprocessing.cpu_count())
 app = typer.Typer()

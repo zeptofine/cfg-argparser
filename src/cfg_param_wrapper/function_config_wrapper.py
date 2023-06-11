@@ -1,8 +1,9 @@
 """A function that can be decorated or wrapped around a file"""
 import functools
 import inspect
-from typing import Callable
 import types
+from typing import Callable
+
 from .cfg_dict import CfgDict
 
 

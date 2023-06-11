@@ -1,4 +1,26 @@
 {
-    "help": true,
-    "what": "the"
+    "scale": 4,
+    "extension": null,
+    "recursive": false,
+    "threads": 9,
+    "limit": null,
+    "limit_mode": "before",
+    "simulate": false,
+    "purge": false,
+    "purge_all": false,
+    "overwrite": false,
+    "whitelist": null,
+    "blacklist": null,
+    "list_separator": null,
+    "minsize": null,
+    "maxsize": null,
+    "crop_mod": false,
+    "before": null,
+    "after": null,
+    "hash_images": false,
+    "hash_mode": "average",
+    "hash_choice": "ignore_all",
+    "s": "you",
+    "num": 3,
+    "is_real": false
 }

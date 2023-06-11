@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools", "toml"]
+requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "cfg-argparser"
-version = "1.2.0-1"
+name = "cfg-param-wrapper"
+version = "1.0.0"
 authors = [{ name = "Zeptofine", email = "zeptofine@gmail.com" }]
 description = "A package designed to simplify configurable defaults from argparse."
 readme = "README.md"
@@ -29,3 +29,6 @@ dependencies = ["toml"]
 
 [project.optional-dependencies]
 typer = ['typer[all]']
+
+[tool.ruff]
+line-length = 120
