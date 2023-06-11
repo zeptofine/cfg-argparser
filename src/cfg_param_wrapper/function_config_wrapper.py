@@ -30,7 +30,7 @@ def wrap_config(cfg_dict: CfgDict) -> Callable[..., Callable]:
         save_after = False
         for name, param in parameters.items():
             if name not in cfg_dict:
-                if cfg_dict.is_json_serializable(param.default):
+                if cfg_dict.is_serializable(param.default):
                     save_after = True
                     cfg_dict[name] = param.default
         if save_after:

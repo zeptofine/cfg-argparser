@@ -1,4 +1,4 @@
-# cfg_param_wrapper 1.0.0
+# cfg_param_wrapper 1.0.0-2
 
 a config wrapper I made. It's made to wrap simple functions, and intercept configurations in tandem with a CfgDict object.
 

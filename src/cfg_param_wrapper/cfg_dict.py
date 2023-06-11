@@ -1,9 +1,10 @@
 """A dictionary subclass used for fast dictionary json usage."""
 
-import json
 import os
+from enum import Enum
 from pathlib import Path
 from typing import Any, Literal
+
 from .save_handlers import HANDLERS, SaveHandler
 
 
@@ -49,6 +50,7 @@ class CfgDict(dict):
             out_dict = self
         if self.sort_on_save:
             out_dict = dict(sorted(out_dict.items()))
+        print(out_dict)
         self.save_handler.save(dict(out_dict))
         return self
 
@@ -83,17 +85,17 @@ class CfgDict(dict):
             self.save({})
         return self
 
-    @staticmethod
-    def is_json_serializable(obj: Any) -> bool:
+    def is_serializable(self, obj: Any) -> bool:
         """checks if an object is JSON Serializable"""
-        try:
-            json.dumps(obj)
-            return True
-        except (TypeError, OverflowError):
-            return False
+        return self.save_handler.try_serialize(obj)
 
     def __setitem__(self, key, value):
-        super().__setitem__(key, value)
+        if isinstance(value, Enum):
+            new_val: str = value.value  # I don't like this
+        else:
+            new_val = value
+
+        super().__setitem__(key, new_val)
         if self.save_on_change:
             self.save()
 

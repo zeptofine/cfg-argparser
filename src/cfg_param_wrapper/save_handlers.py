@@ -21,6 +21,10 @@ class SaveHandler:
     def load(self) -> dict:
         """loads a dictionary from self.path"""
 
+    @abstractmethod
+    def try_serialize(self, object: object) -> bool:
+        """Tries to serialize the item and returns whether it is successful"""
+
     def _write(self, func: Callable, mode="w") -> None:
         with open(self.path, mode, encoding="utf-8") as file:
             func(file)
@@ -39,6 +43,12 @@ class JsonSaveHandler(SaveHandler):
     def load(self) -> dict:
         return self._read(json.load)
 
+    def try_serialize(self, object: object) -> bool:
+        try:
+            json.dumps(object)
+            return True
+        except (TypeError, OverflowError):
+            return False
 
 class TomlSaveHandler(SaveHandler):
     """A save handler made to save and load .toml files"""
@@ -49,5 +59,11 @@ class TomlSaveHandler(SaveHandler):
     def load(self) -> dict:
         return self._read(toml.load)
 
+    def try_serialize(self, object: object) -> bool:
+        try:
+            toml.dumps(object)
+            return True
+        except (TypeError, OverflowError, ValueError):
+            return False
 
 HANDLERS: dict[str, type[SaveHandler]] = {"json": JsonSaveHandler, "toml": TomlSaveHandler}
