@@ -21,11 +21,21 @@ def copy_func(f, name=None):
 
 
 def wrap_config(cfg_dict: CfgDict) -> Callable[..., Callable]:
-    """Wraps a function with a CfgDict file to make an easy config configuration"""
+    '''Wraps a function with a CfgDict to make an easy config setup.
 
+    Parameters
+    ----------
+    cfg_dict : CfgDict
+        The file to write to. Must be a CfgDict.
+
+    Returns
+    -------
+    Callable[..., Callable]
+        a function that takes a wrapped function.
+    '''
     def _wrapper(func: Callable) -> Callable:
-        # get parameters and defaults
 
+        # get parameters and defaults
         parameters: dict[str, inspect.Parameter] = dict(inspect.signature(func).parameters)
         save_after = False
         for name, param in parameters.items():
