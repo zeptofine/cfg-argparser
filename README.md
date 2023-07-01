@@ -1,4 +1,4 @@
-# cfg_param_wrapper 1.0.0-2
+# cfg_param_wrapper 1.0.1
 
 a config wrapper I made. It's made to wrap simple functions, and intercept configurations in tandem with a CfgDict object.
 
@@ -26,6 +26,7 @@ This is very useful in `Typer` and `Click` commands (wrap it before declaring a 
 
 This is a dictionary subclass that takes a filename, and saves all the changes to the file using `json` or `toml`.
 
+It allows custom encoders and decoders for the file formats it supports.
 
 ## Example
 

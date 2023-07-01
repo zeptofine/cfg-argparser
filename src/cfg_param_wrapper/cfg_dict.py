@@ -23,6 +23,8 @@ class CfgDict(dict):
         sort_on_save: bool = False,
         start_empty: bool = False,
         save_mode: Literal["json", "toml"] = "json",
+        encoder=None,
+        decoder=None,
     ) -> None:
         config = config or {}
         super().__init__(config)
@@ -32,7 +34,8 @@ class CfgDict(dict):
 
         assert save_mode in HANDLERS
         self.save_handler: SaveHandler = HANDLERS[save_mode](cfg_path)
-
+        self.encoder = encoder
+        self.decoder = decoder
         if not os.path.exists(self.cfg_path) and autofill:
             self.save(config)
         if not start_empty:
@@ -50,8 +53,7 @@ class CfgDict(dict):
             out_dict = self
         if self.sort_on_save:
             out_dict = dict(sorted(out_dict.items()))
-        print(out_dict)
-        self.save_handler.save(dict(out_dict))
+        self.save_handler.save(dict(out_dict), self.encoder)
         return self
 
     def _save_on_change(self) -> bool:
@@ -78,7 +80,7 @@ class CfgDict(dict):
         """Loads the data from the file"""
         if os.path.exists(self.cfg_path):
             try:
-                self.update(self.save_handler.load())
+                self.update(self.save_handler.load(self.decoder))
             except Exception:
                 print(f"[!] failed to load config from {self.cfg_path}")
         else:
